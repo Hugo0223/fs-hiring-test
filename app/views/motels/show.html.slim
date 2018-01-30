@@ -1,6 +1,19 @@
-p#notice = notice
+h1 = @motel.name
+h2 List of rooms  
 
+table.table.table-bordered.text-center
+  thead.thead-dark
+    tr
+      th Room 
+      th Nb. of bookings 
+      th Revenues
 
-=> link_to 'Edit', edit_motel_path(@motel)
-'|
-=< link_to 'Back', motels_path
+  tbody
+    - @rooms.each do |room|
+      tr
+        td 
+          = link_to room.name, room_path(room.id)
+        td = room.bookings.count
+        td = decorate_revenue(@revenues_rooms[room.id])
+
+br

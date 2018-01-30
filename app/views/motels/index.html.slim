@@ -3,7 +3,6 @@ h1 Your motels :
 table.table.table-bordered.text-center
   thead.thead-dark
     tr
-      th
       th Motel
       th Nb. of bookings 
       th Revenues
@@ -11,11 +10,10 @@ table.table.table-bordered.text-center
   tbody
     - @motels.each do |motel|
       tr
-        td 
-          img.img-fluid  src="#{motel.logo}"
-        td = motel.name
+        td
+          img.img-fluid  src="#{motel.logo}" 
+          = link_to motel.name, motel_path(motel.id)
         td = motel.bookings.count
         td = decorate_revenue(@revenues_motels[motel.id])
 
 br
-

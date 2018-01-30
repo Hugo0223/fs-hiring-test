@@ -11,7 +11,8 @@ class MotelsController < ApplicationController
   # GET /motels/1
   # GET /motels/1.json
   def show
-    # Show Motel => Motel infos + all rooms in motel with revenue
+    @rooms = @motel.rooms
+    @revenues_rooms = revenues_resources(@rooms)
   end
 
   private

@@ -4,7 +4,8 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @bookings = Booking.where(:motel_id => current_user.motels.map(&:id)).order(created_at: :desc)
+    @global_revenues = revenues_bookings(@bookings)
   end
 
   # GET /bookings/1

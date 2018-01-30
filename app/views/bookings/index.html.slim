@@ -1,19 +1,39 @@
-h1 Listing bookings
+.panel.text-center.panel-success
+  .panel-heading My revenues 
+  .panel-body
+    h1.panel-text = "Net earnings : " + decorate_revenue(@global_revenues) 
+    h3.panel-text = "Number of bookings : " + @bookings.count.to_s
+    a.btn.btn-primary href="#{motels_path}" My motels
 
-table
-  thead
-    tr
-      th
-      th
-      th
 
-  tbody
-    - @bookings.each do |booking|
+h1 All bookings : 
+
+
+.table-responsive
+  table.table.table-striped.table-bordered
+    thead
       tr
-        td = link_to 'Show', booking
-        td = link_to 'Edit', edit_booking_path(booking)
-        td = link_to 'Destroy', booking, data: { confirm: 'Are you sure?' }, method: :delete
+        th 
+        th Booked
+        th Motel
+        th Room 
+        th Booking period
+        th Price
+        th Commission
+        th Net earning
+
+    tbody
+      - @bookings.each do |booking|
+        tr
+          td 
+            = link_to 'Details', booking_path(booking.id), class: 'button' 
+          td  
+            em = time_ago_in_words(booking.created_at) + " ago"
+          td = booking.motel.name
+          td = booking.room.name
+          td = booking.booking_period
+          td = decorate_revenue((booking.amount_centavos/100).round(2)) 
+          td = booking.fee_percentage.to_s + "% "
+          td = decorate_revenue(((booking.amount_centavos * ((100-booking.fee_percentage).to_f/100))/100).round(2))
 
 br
-
-= link_to 'New Booking', new_booking_path
