@@ -33,8 +33,9 @@ gem 'devise'
 gem 'pundit'
 # SLIM template
 gem 'slim-rails'
+# API requests
+gem 'rest-client'
 
-gem 'geckodriver-helper'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -42,7 +43,7 @@ group :development, :test do
   gem 'rspec-rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
-
+  gem 'geckodriver-helper'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'selenium-webdriver'
 end

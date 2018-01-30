@@ -1,0 +1,19 @@
+h1 Listing motels
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @motels.each do |motel|
+      tr
+        td = link_to 'Show', motel
+        td = link_to 'Edit', edit_motel_path(motel)
+        td = link_to 'Destroy', motel, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Motel', new_motel_path
