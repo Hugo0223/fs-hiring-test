@@ -1,19 +1,21 @@
-h1 Listing motels
+h1 Your motels : 
 
-table
-  thead
+table.table.table-bordered.text-center
+  thead.thead-dark
     tr
       th
-      th
-      th
+      th Motel
+      th Nb. of bookings 
+      th Revenues
 
   tbody
     - @motels.each do |motel|
       tr
-        td = link_to 'Show', motel
-        td = link_to 'Edit', edit_motel_path(motel)
-        td = link_to 'Destroy', motel, data: { confirm: 'Are you sure?' }, method: :delete
+        td 
+          img.img-fluid  src="#{motel.logo}"
+        td = motel.name
+        td = motel.bookings.count
+        td = decorate_revenue(@revenues_motels[motel.id])
 
 br
 
-= link_to 'New Motel', new_motel_path
