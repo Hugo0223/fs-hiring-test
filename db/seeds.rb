@@ -26,6 +26,7 @@ end
 JSON.parse(RestClient.get(motels_url)).each_with_index do |motel, index|
 	# User1 gets one motel, User2 gets the others
 	index == 1 ? (owner = user1) : (owner = user2)
+	
 	Motel.create(
 		id: motel["id"],
 		name: motel["name"],

@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :rooms, through: :motels
   has_many :bookings, through: :motels
 
-  validates :email, uniqueness: true, case_sensitive: false
+  validates :email, presence: true, uniqueness: true, case_sensitive: false
 
 end
