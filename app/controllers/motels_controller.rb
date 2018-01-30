@@ -11,6 +11,7 @@ class MotelsController < ApplicationController
   # GET /motels/1
   # GET /motels/1.json
   def show
+    authorize @motel
     @rooms = @motel.rooms
     @revenues_rooms = revenues_resources(@rooms)
   end

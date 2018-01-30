@@ -9,9 +9,15 @@ html
     link type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"
     link type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"
   body
+
     = render partial: 'layouts/header'
+
    	div.container
-   	  = yield
+      - if flash[:alert]
+        .alert.alert-danger = flash[:alert]
+      - if flash[:notice]
+        .alert.alert-success = flash[:notice]
+      = yield
 
     = render partial: 'layouts/footer'
 
