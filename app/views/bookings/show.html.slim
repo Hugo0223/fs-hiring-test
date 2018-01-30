@@ -1,6 +1,10 @@
-p#notice = notice
+h1 = Booking 
+h2 = @booking.motel.name
+h2 = @booking.room.name
 
-
-=> link_to 'Edit', edit_booking_path(@booking)
-'|
-=< link_to 'Back', bookings_path
+p  
+	= "Booked at : " + @booking.created_at.to_s
+p 
+	= "Paid at : " + @booking.paid_at.to_s
+p 
+	= "Booking code  : " + @booking.booking_code.to_s

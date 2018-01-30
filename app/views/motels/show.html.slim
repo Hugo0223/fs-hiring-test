@@ -12,7 +12,7 @@ table.table.table-bordered.text-center
     - @rooms.each do |room|
       tr
         td 
-          = link_to room.name, room_path(room.id)
+          = link_to room.name, motel_room_path(@motel.id, room.id)
         td = room.bookings.count
         td = decorate_revenue(@revenues_rooms[room.id])
 

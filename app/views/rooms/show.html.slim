@@ -1,6 +1,31 @@
-p#notice = notice
+h1 = @room.name
+h3 = @room.motel.name
+// img 
+// Room Présentation 
 
+h2 List of bookings for that room : 
 
-=> link_to 'Edit', edit_room_path(@room)
-'|
-=< link_to 'Back', rooms_path
+.table-responsive
+  table.table.table-striped.table-bordered
+    thead
+      tr
+        th 
+        th Booked
+        th Booking period
+        th Price
+        th Commission
+        th Net earning
+
+    tbody
+      - @room.bookings.order(created_at: :desc).each do |booking|
+        tr
+          td 
+            = link_to 'Details', booking_path(booking.id), class: 'button' 
+          td  
+            em = time_ago_in_words(booking.created_at) + " ago"
+          td = booking.booking_period
+          td = decorate_revenue((booking.amount_centavos/100).round(2)) 
+          td = booking.fee_percentage.to_s + "% "
+          td = decorate_revenue(((booking.amount_centavos * ((100-booking.fee_percentage).to_f/100))/100).round(2))
+
+br
