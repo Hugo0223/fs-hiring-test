@@ -1,5 +1,6 @@
+
 .panel.text-center.panel-success
-  .panel-heading My revenues 
+  .panel-heading = "Welcome " + current_user.email + " !"  
   .panel-body
     h1.panel-text = "Net earnings : " + decorate_revenue(@global_revenues) 
     h3.panel-text = "Number of bookings : " + @bookings.count.to_s

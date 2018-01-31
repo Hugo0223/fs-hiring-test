@@ -1,0 +1,16 @@
+.navbar-default{
+	background-color: $primaryColor;
+	border-color: $primaryColor;
+	.navbar-brand{
+		color: $secondaryColor;
+	}
+}
+
+.navbar-nav a{
+    color: $secondaryColor !important;
+}
+.navbar-nav a:hover{
+    color: $primaryColor !important;
+    background-color:$secondaryColor !important ;
+
+}
