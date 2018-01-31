@@ -5,7 +5,15 @@
 		color: $secondaryColor;
 	}
 }
-
+.navbar-toggle{
+	border-color: $secondaryColor !important;
+	.icon-bar{
+		background-color: $secondaryColor !important;
+	}
+	&:hover{
+				background-color: $backgroundColor !important;
+	}
+}
 .navbar-nav a{
     color: $secondaryColor !important;
 }

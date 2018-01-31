@@ -1,5 +1,3 @@
-
-
 - if @bookings.none?
   h4 Sorry, you don't have any motel
 - else
@@ -19,24 +17,24 @@
           th 
           th Booked
           th Motel
-          th Room 
-          th Booking period
-          th Price
-          th Commission
+          th.hidden-xs Room 
+          th.hidden-xs Booking period
+          th.hidden-xs Price
+          th.hidden-xs Commission
           th Net earning
 
       tbody
         - @bookings.each do |booking|
           tr
             td 
-              = link_to 'Details', booking_path(booking.id), class: 'button' 
+              = link_to 'Infos', booking_path(booking.id)
             td  
-              em = time_ago_in_words(booking.created_at) + " ago"
+              em = format_date(booking.created_at)
             td = booking.motel.name
-            td = booking.room.name
-            td = booking.booking_period
-            td = decorate_revenue((booking.amount_centavos/100).round(2)) 
-            td = booking.fee_percentage.to_s + "% "
+            td.hidden-xs = booking.room.name
+            td.hidden-xs = booking.booking_period
+            td.hidden-xs = decorate_revenue((booking.amount_centavos/100).round(2)) 
+            td.hidden-xs = booking.fee_percentage.to_s + "% "
             td = decorate_revenue(((booking.amount_centavos * ((100-booking.fee_percentage).to_f/100))/100).round(2))
 
 br
