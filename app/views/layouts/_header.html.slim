@@ -7,10 +7,16 @@ nav.navbar.navbar-default.navbar-static-top role="navigation"
         span.icon-bar
       a.navbar-brand href="/motels"  Luvotels
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li
-          a href="/bookings" Bookings
-        li
-          a href="/motels" My motels
-        
-
+      - if user_signed_in?       
+        ul.nav.navbar-nav
+          li
+            a href="/bookings" Bookings
+          li
+            a href="/motels" My motels     
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in? 
+          li
+            = link_to "Logout" ,destroy_user_session_path, method: :delete
+        - else
+          li
+            = link_to "Login" , new_user_session_path

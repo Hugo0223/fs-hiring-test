@@ -1,6 +1,7 @@
 h1 = @motel.name
 h2 Rooms  
 
+
 .row.text-center
   - @rooms.each do |room|
     .col-sm-6.col-md-4
@@ -11,4 +12,5 @@ h2 Rooms
           h3 = "Revenues : " + decorate_revenue(@revenues_rooms[room.id])
           h4 = "Number of bookings :" + room.bookings.count.to_s
           p = link_to "List of bookings", motel_room_path(@motel.id, room.id), class: "btn btn-primary"
+
 br
