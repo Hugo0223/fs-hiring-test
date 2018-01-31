@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protect_from_forgery with: :exception
 	before_action :authenticate_user!
-  
+
 
   def revenues_booking(booking)
 		(booking.amount_centavos * ((100-booking.fee_percentage).to_f/100)/100).round(2)
@@ -29,4 +32,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
   	bookings_path
 	end
+
+	def user_not_authorized
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to motels_path
+  end
 end

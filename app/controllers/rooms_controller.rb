@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-
+    authorize @room
   end
 
   private
