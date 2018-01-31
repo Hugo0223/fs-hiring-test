@@ -4,7 +4,7 @@ class MotelsController < ApplicationController
   # GET /motels
   # GET /motels.json
   def index
-    @motels = current_user.motels
+    @motels = policy_scope(Motel)
     @revenues_motels = revenues_resources(@motels)
   end
 
