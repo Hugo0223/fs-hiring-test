@@ -1,2 +1,46 @@
-h1 Welcome 
+h1 Welcome to your dashboard ! 
+- if @bookings.none?
+  h4 Sorry, you don't have any motel
+- else
+  .panel.text-center.panel-success
+    .panel-heading = "Welcome " + current_user.email + " !"  
+    .panel-body
+      h2.panel-text = "Net earnings : " + decorate_revenue(@global_revenues) 
+      h4.panel-text = "Number of bookings : " + @bookings.count.to_s
+      a.btn.btn-primary href="#{motels_path}" My motels
+  
+  h3 Revenues per months
+  = line_chart @monthly_datas.collect{|i| [i["name"],i["revenues"]]}
+  .table-responsive.text-center
+    table.table.table-striped.table-bordered
+      thead.text-center
+        tr
+          th Month
+          th Nb. bookings
+          th Net earning
 
+      tbody
+        - @monthly_datas.each do |month|
+          tr
+           td = month["name"]
+           td = month["bookings"].to_s
+           td = decorate_revenue(month["revenues"])
+    
+  h3 Revenues per motel
+  .table-responsive.text-center
+    table.table.table-striped.table-bordered
+      thead.text-center
+        tr
+          th Motel
+          th Nb. bookings
+          th Net earning
+
+      tbody
+        - @motels_datas.each do |motel|
+          tr
+           td = motel["name"]
+           td = motel["bookings"].to_s
+           td = decorate_revenue(motel["revenues"])
+  
+  = pie_chart @motels_datas.collect{|i| [i["name"],i["revenues"]]}
+br
