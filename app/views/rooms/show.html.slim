@@ -1,19 +1,24 @@
-h1 = @room.name
-h3 = @room.motel.name
-// img 
-// Room Présentation 
+.row.text-center
+  .col-xs-12
+    .thumbnail
+      h1 = @room.name
+      h3 = @room.motel.name
+      img.img-fluid  src="#{@room.picture}" 
+      .caption
+        h3 = "Revenues : " + decorate_revenue(@revenues_room)
+        h4 = "Number of bookings :" + @room.bookings.count.to_s
+
 
 h2 List of bookings for that room : 
-
 .table-responsive
   table.table.table-striped.table-bordered
     thead
       tr
         th 
         th Booked
-        th Booking period
-        th Price
-        th Commission
+        th.hidden-xs  Booking period
+        th.hidden-xs  Price
+        th.hidden-xs  Commission
         th Net earning
 
     tbody
@@ -22,10 +27,10 @@ h2 List of bookings for that room :
           td 
             = link_to 'Details', booking_path(booking.id), class: 'button' 
           td  
-            em = time_ago_in_words(booking.created_at) + " ago"
-          td = booking.booking_period
-          td = decorate_revenue((booking.amount_centavos/100).round(2)) 
-          td = booking.fee_percentage.to_s + "% "
+            em = format_date(booking.created_at)
+          td.hidden-xs   = booking.booking_period
+          td.hidden-xs   = decorate_revenue((booking.amount_centavos/100).round(2)) 
+          td.hidden-xs   = booking.fee_percentage.to_s + "% "
           td = decorate_revenue(((booking.amount_centavos * ((100-booking.fee_percentage).to_f/100))/100).round(2))
 
 br

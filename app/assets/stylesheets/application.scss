@@ -1,4 +1,25 @@
-@import "/\*";
+$mainTextColor: #000000;
+$primaryColor : #5a093c;
+$secondaryColor : #f5a622;
+$backgroundColor: #f6f8fa;
+
 @import "bootstrap";
+@import "/\*";
+
+body{
+	background-color: $backgroundColor;
+	font-family: "Avenir Next", demi bold !important;
+  font-size: 14px;
+  font-weight: 400; 
+}
+
+h1{
+	color: $secondaryColor;
+	text-align: center;
+}
+h2,h4{
+	color: #8f9294;
+	text-align: center;
+}
 
 

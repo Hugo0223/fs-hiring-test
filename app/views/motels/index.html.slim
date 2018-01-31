@@ -1,19 +1,18 @@
 h1 Your motels : 
 
-table.table.table-bordered.text-center
-  thead.thead-dark
-    tr
-      th Motel
-      th Nb. of bookings 
-      th Revenues
+- if @motels.none?
+  h4 Sorry, you don't have any motel
+- else
+	.row.text-center
+	  - @motels.each do |motel|
 
-  tbody
-    - @motels.each do |motel|
-      tr
-        td
-          img.img-fluid  src="#{motel.logo}" 
-          = link_to motel.name, motel_path(motel.id)
-        td = motel.bookings.count
-        td = decorate_revenue(@revenues_motels[motel.id])
+	    .col-sm-6.col-md-4
+	      .thumbnail
+	        img.img-fluid  src="#{motel.logo}" 
+	        .caption
+	          h2 = link_to motel.name, motel_path(motel.id)
+	          h3 = "Revenues : " + decorate_revenue(@revenues_motels[motel.id])
+	          h4 = "Number of bookings :" + motel.bookings.count.to_s
+	          p = link_to "Go to Rooms", motel_path(motel.id), class: "btn btn-primary"
 
 br

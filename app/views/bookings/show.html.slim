@@ -1,10 +1,32 @@
 h1 = Booking 
-h2 = @booking.motel.name
-h2 = @booking.room.name
 
-p  
-	= "Booked at : " + @booking.created_at.to_s
-p 
-	= "Paid at : " + @booking.paid_at.to_s
-p 
-	= "Booking code  : " + @booking.booking_code.to_s
+.panel.text-center.panel-info
+  .panel-heading  Booking informations  
+  .panel-body
+		.col-xs-12.col-sm-6
+			p
+				b = "Motel : " + @booking.motel.name
+			p
+				b = "Room : " + @booking.room.name
+			p 
+				b Booking period :  
+				= @booking.booking_period
+			p 
+				b Booked at :  
+				= format_date(@booking.created_at)
+			p 
+				b Booking code : 
+				= @booking.booking_code.to_s
+		.col-xs-12.col-sm-6
+			p 
+				b Price :  
+				= decorate_revenue((@booking.amount_centavos/100).round(2))
+			p 
+				b Commission :  
+				= @booking.fee_percentage.to_s + "% " 
+			p 
+				b Net earning :  
+				= decorate_revenue(((@booking.amount_centavos * ((100-@booking.fee_percentage).to_f/100))/100).round(2))
+			p 
+				b Paid at :  
+				= format_date(@booking.paid_at.to_date)

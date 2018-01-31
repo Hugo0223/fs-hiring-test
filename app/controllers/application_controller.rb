@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
   	bookings_path
 	end
 
+	def after_sign_out_path_for(resource)
+  	new_user_session_path
+	end
+
 	def user_not_authorized
     flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to motels_path

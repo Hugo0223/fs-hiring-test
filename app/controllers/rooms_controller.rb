@@ -6,6 +6,8 @@ class RoomsController < ApplicationController
   # GET /rooms/1.json
   def show
     authorize @room
+    @motel = Motel.find(params[:motel_id])
+    @revenues_room = revenues_bookings(@room.bookings)
   end
 
   private
