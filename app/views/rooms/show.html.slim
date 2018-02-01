@@ -2,7 +2,7 @@
   .col-xs-12
     .thumbnail
       h1 = @room.name
-      h3 = @room.motel.name
+      h4 = @room.motel.name
       img.img-fluid  src="#{@room.picture}" 
       .caption
         h3 = "Revenues : " + decorate_revenue(@revenues_room)

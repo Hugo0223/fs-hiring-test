@@ -9,7 +9,7 @@ h1 Welcome to your dashboard !
       h4.panel-text = "Number of bookings : " + @bookings.count.to_s
       a.btn.btn-primary href="#{motels_path}" My motels
   
-  h3 Revenues per months
+  h3 Revenues per month : 
   = line_chart @monthly_datas.collect{|i| [i["name"],i["revenues"]]}
   .table-responsive.text-center
     table.table.table-striped.table-bordered
@@ -26,7 +26,7 @@ h1 Welcome to your dashboard !
            td = month["bookings"].to_s
            td = decorate_revenue(month["revenues"])
     
-  h3 Revenues per motel
+  h3 Revenues per motel : 
   .table-responsive.text-center
     table.table.table-striped.table-bordered
       thead.text-center
